@@ -7,9 +7,32 @@ const carrinho = ref({
   total: 0
 })
 
+function atualizaQuantidadeItem(item) {
+  carrinho.value.total -= item.total
+  item.total = item.price * item.quantidade
+  carrinho.value.total += item.total
+}
+
+function removerItemCarrinho(item) {
+  const index = carrinho.value.itens.findIndex((i) => i.id === item.id)
+  carrinho.value.total -= item.total
+  carrinho.value.itens.splice(index, 1)
+}
+
 function adicionarAoCarrinho(livro) {
-  carrinho.value.itens.push(livro)
-  carrinho.value.total += livro.price
+  const index = carrinho.value.itens.findIndex((item) => item.id === livro.id)
+  if (index === -1) {
+    carrinho.value.itens.push({
+      ...livro,
+      quantidade: 1,
+      total: livro.price
+    })
+    carrinho.value.total += livro.price
+  } else {
+    carrinho.value.itens[index].quantidade++
+    carrinho.value.itens[index].total += livro.price
+    carrinho.value.total += livro.price
+  }
 }
 
 function formatarPreco(preco) {
@@ -18,7 +41,9 @@ function formatarPreco(preco) {
 </script>
 
 <template>
+  <div class="container-fluid p-5 bg-primary text-white text-center">
   <h1>Minha livraria</h1>
+  </div>
   <div class="container-geral">
     <div class="listagem-livros">
       <div class="card-livro" v-for="livro in livros" :key="livro.id">
@@ -37,9 +62,26 @@ function formatarPreco(preco) {
       <div v-else>
         <div class="item-carrinho" v-for="(item, index) in carrinho.itens" :key="index">
           <div class="info-livro">
-            <img :src="item.img" class="icon-capa-livro" />
-            <p>{{ item.title }}</p>
-            <p class="info-livro-preco">{{ formatarPreco(item.price) }}</p>
+            <div class="imagem-livro">
+              <img :src="item.img" class="icon-capa-livro" />
+            </div>
+            <div class="detalhes-livro">
+              <div>
+                <p>{{ item.title }}</p>
+                <p class="info-livro-preco">{{ formatarPreco(item.price) }}/un</p>
+              </div>
+              <div>
+                Qtde:
+                <input
+                  type="number"
+                  v-model="item.quantidade"
+                  @change="atualizaQuantidadeItem(item)"
+                  min="1"
+                />
+                <button @click="removerItemCarrinho(item)">&#128465;</button>
+                <p>Total: {{ formatarPreco(item.total) }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -49,11 +91,44 @@ function formatarPreco(preco) {
 </template>
 
 <style scoped>
+.detalhes-livro input[type='number'] {
+  width: 50px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  margin-left: 10px;
+}
+
+.detalhes-livro button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
 .info-livro {
   display: flex;
   margin-bottom: 10px;
 }
+.detalhes-livro {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
+.detalhes-livro p {
+  margin: 0;
+}
+
+.detalhes-livro div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 .info-livro-preco {
   margin-left: auto;
 }
@@ -62,14 +137,12 @@ function formatarPreco(preco) {
   margin-right: 10px;
 }
 .container-geral {
-  /* display: flex;
-  justify-content: space-between; */
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 
 .carrinho {
-  /* min-width: 20%; */
+  min-width: 20%;
 }
 .listagem-livros {
   display: flex;
