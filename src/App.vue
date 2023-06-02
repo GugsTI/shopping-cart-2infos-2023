@@ -41,8 +41,8 @@ function formatarPreco(preco) {
 </script>
 
 <template>
-  <div class="container-fluid p-5 bg-primary text-white text-center">
-  <h1>Minha livraria</h1>
+  <div class="container-fluid p-5 bg-danger p-3 text-white text-center">
+  <h1>MINHA LIVRARIA</h1>
   </div>
   <div class="container-geral">
     <div class="listagem-livros">
@@ -53,11 +53,11 @@ function formatarPreco(preco) {
         <p class="titulo-livro">{{ livro.title }}</p>
         <p class="autor-livro">{{ livro.author }}</p>
         <p class="preco-livro">{{ formatarPreco(livro.price) }}</p>
-        <button @click="adicionarAoCarrinho(livro)">Adicionar ao carrinho</button>
+        <button  class="btn btn-dark" @click="adicionarAoCarrinho(livro)">Adicionar ao carrinho</button>
       </div>
     </div>
-    <div class="carrinho">
-      <h2>Meu carrinho</h2>
+    <div class="carrinho" >
+      <h2 style="color: aliceblue;">Meu carrinho</h2>
       <p v-if="carrinho.itens.length === 0">Seu carrinho está vazio</p>
       <div v-else>
         <div class="item-carrinho" v-for="(item, index) in carrinho.itens" :key="index">
@@ -143,6 +143,10 @@ function formatarPreco(preco) {
 
 .carrinho {
   min-width: 20%;
+  font-family: 'Times New Roman', Times, serif;
+  color: aliceblue;
+  
+
 }
 .listagem-livros {
   display: flex;
@@ -152,7 +156,7 @@ function formatarPreco(preco) {
 .card-livro {
   margin: 5px 10px;
   padding: 10px;
-  background-color: beige;
+  background-color:crimson;
   border-radius: 10px;
   width: 180px;
 }
@@ -161,9 +165,9 @@ function formatarPreco(preco) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color:gold;
   border-radius: 10px;
-  width: 180px;
+  
   height: 270px;
 }
 .capa-livro {
@@ -179,4 +183,5 @@ function formatarPreco(preco) {
   font-weight: bold;
   margin-bottom: 5px;
 }
+
 </style>
