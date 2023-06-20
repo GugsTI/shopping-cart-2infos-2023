@@ -41,12 +41,12 @@ function formatarPreco(preco) {
 </script>
 
 <template>
-  <div class="container-fluid p-5 bg-danger p-3 text-white text-center">
-    <h1>MINHA LIVRARIA</h1>
+  <div class="container-fluid p-5 bg-warning p-3 text-white text-center">
+    <h1>Binco Livrary</h1>
   </div>
   <div class="container-geral">
     <div class="listagem-livros">
-      <div class="card-livro" v-for="livro in livros" :key="livro.id">
+      <div  class=" bg-warning card-livro"  v-for="livro in livros" :key="livro.id">
         <div class="wrap-livro">
           <img :src="livro.img" alt="Capa do livro" class="capa-livro" />
         </div>
@@ -60,9 +60,9 @@ function formatarPreco(preco) {
     <div class="carrinho">
       <br>
 
-      <button type="button" class="btn btn-outline-danger" data-bs-toggle="collapse" data-bs-target="#demo">carrinho</button>
+      <button type="button" class="btn btn-outline-warning" data-bs-toggle="collapse" data-bs-target="#demo">carrinho</button>
       <div id="demo" class="carrinho">
-        <h2 style="color: aliceblue;">Meu carrinho</h2>
+        <h2 style="color:gold;">Meu carrinho</h2>
         <p v-if="carrinho.itens.length === 0">Seu carrinho está vazio</p>
         <div v-else>
           <div class="item-carrinho" v-for="(item, index) in carrinho.itens" :key="index">
@@ -76,8 +76,8 @@ function formatarPreco(preco) {
               </div>
               <div>
                 Qtde:
-                <input type="number" v-model="item.quantidade" @change="atualizaQuantidadeItem(item)" min="1" />
-                <button @click="removerItemCarrinho(item)">&#128465;</button>
+                <input class="input" type="number" v-model="item.quantidade" @change="atualizaQuantidadeItem(item)" min="1" />
+                <button class="arredondamento" @click="removerItemCarrinho(item)">&#128465;</button>
                 <p>Total: {{ formatarPreco(item.total) }}</p>
                 <button  type="button" class="btn btn-outline-primary" ><a href="https://www.amazon.com.br/cart?ref_=sw_gtc">finalizar compra</a></button>
 
@@ -95,6 +95,18 @@ function formatarPreco(preco) {
 </template>
 
 <style scoped>
+
+.arredondamento{
+  border-radius: 10px;
+  background-color: rgb(255, 253, 253);
+}
+
+.input{
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+
+
+}
 .detalhes-livro input[type='number'] {
   width: 50px;
   text-align: center;
@@ -165,7 +177,6 @@ function formatarPreco(preco) {
 .card-livro {
   margin: 5px 10px;
   padding: 10px;
-  background-color: crimson;
   border-radius: 10px;
   width: 180px;
 }
@@ -174,7 +185,7 @@ function formatarPreco(preco) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: gold;
+  background-color: rgb(255, 217, 0);
   border-radius: 10px;
 
   height: 270px;
