@@ -38,6 +38,9 @@ function adicionarAoCarrinho(livro) {
 function formatarPreco(preco) {
   return 'R$ ' + preco.toFixed(2).replace('.', ',')
 }
+const props = defineProps({
+  livro: Object
+})
 </script>
 
 <template>
@@ -54,11 +57,16 @@ function formatarPreco(preco) {
         <p class="autor-livro">{{ livro.author }}</p>
         <p class="preco-livro">{{ formatarPreco(livro.price) }}</p>
         <button class="btn btn-dark" @click="adicionarAoCarrinho(livro)">Adicionar ao carrinho</button>
+        <br>
+        <button class="btn btn-dark" >Share</button>
       </div>
     </div>
 
     <div class="carrinho">
       <br>
+
+
+      
 
       <button type="button" class="btn btn-outline-warning" data-bs-toggle="collapse" data-bs-target="#demo">carrinho</button>
       <div id="demo" class="carrinho">
