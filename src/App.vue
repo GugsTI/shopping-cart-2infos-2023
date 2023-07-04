@@ -57,13 +57,13 @@ const props = defineProps({
         <p class="autor-livro">{{ livro.author }}</p>
         <p class="preco-livro">{{ formatarPreco(livro.price) }}</p>
         <button class="btn btn-dark" @click="adicionarAoCarrinho(livro)">Adicionar ao carrinho</button>
-        <br>
+        <hr>
         <button class="btn btn-dark" >Share</button>
       </div>
     </div>
 
     <div class="carrinho">
-      <br>
+      <hr>
 
 
       
