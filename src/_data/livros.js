@@ -83,6 +83,20 @@ export const livros = [
     price: 19.00,
     img: 'https://m.media-amazon.com/images/I/51hJnJy5X4L._SX339_BO1,204,203,200_.jpg' 
   },
+  {
+  id: 13,
+  title: "O duque e eu: O livro de Daphne (Os Bridgertons 1) ",
+  author: ' Julia Quinn ',
+  price: 50.00,
+  img: 'https://m.media-amazon.com/images/I/514KJkjmU+L._AC_UF226,226_FMjpg_.jpg' 
+},
+{
+  id: 14,
+  title: "Jogos vorazes (Trilogia Jogos Vorazes Livro 1) ",
+  author: 'Suzanne Collins ',
+  price: 59.70,
+  img: 'https://m.media-amazon.com/images/I/412YcnhZs1L._AC_UF226,226_FMjpg_.jpg' 
+},
 ]
 
 
