@@ -87,7 +87,7 @@ const props = defineProps({
                 <input class="input" type="number" v-model="item.quantidade" @change="atualizaQuantidadeItem(item)" min="1" />
                 <button class="arredondamento" @click="removerItemCarrinho(item)">&#128465;</button>
                 <p>Total: {{ formatarPreco(item.total) }}</p>
-                <button  type="button" class="btn btn-outline-primary" ><a href="cardbincocarrinho.surge.sh">finalizar compra</a></button>
+                <button  type="button" class="btn btn-outline-primary" ><a href="http://formcredito.surge.sh/">finalizar compra</a></button>
 
               </div>
             </div>
